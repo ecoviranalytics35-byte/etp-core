@@ -52,7 +52,7 @@ export function Header() {
         <div className="ml-auto flex items-center gap-3">
           {user && <RoleSwitcher className="hidden sm:inline-flex" />}
 
-          {loading ? null : user ? (
+          {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
