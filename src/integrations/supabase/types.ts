@@ -14,6 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
+      jobs: {
+        Row: {
+          budget_max: number | null
+          budget_min: number | null
+          category: string
+          country_code: string | null
+          created_at: string
+          currency: string
+          description: string
+          id: string
+          posted_by: string
+          status: Database["public"]["Enums"]["job_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          budget_max?: number | null
+          budget_min?: number | null
+          category: string
+          country_code?: string | null
+          created_at?: string
+          currency?: string
+          description: string
+          id?: string
+          posted_by: string
+          status?: Database["public"]["Enums"]["job_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          budget_max?: number | null
+          budget_min?: number | null
+          category?: string
+          country_code?: string | null
+          created_at?: string
+          currency?: string
+          description?: string
+          id?: string
+          posted_by?: string
+          status?: Database["public"]["Enums"]["job_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           active_role: Database["public"]["Enums"]["app_role"]
@@ -95,6 +140,7 @@ export type Database = {
     }
     Enums: {
       app_role: "client" | "provider" | "admin"
+      job_status: "open" | "in_progress" | "closed" | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -223,6 +269,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["client", "provider", "admin"],
+      job_status: ["open", "in_progress", "closed", "cancelled"],
     },
   },
 } as const
