@@ -38,6 +38,13 @@ export function Header() {
           >
             Home
           </Link>
+          <Link
+            to="/jobs"
+            className="rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            activeProps={{ className: "text-foreground" }}
+          >
+            Jobs
+          </Link>
           {user && (
             <Link
               to="/dashboard"
@@ -82,6 +89,9 @@ export function Header() {
                 </div>
                 <DropdownMenuItem onSelect={() => navigate({ to: "/dashboard" })}>
                   Dashboard
+                </DropdownMenuItem>
+                <DropdownMenuItem onSelect={() => navigate({ to: "/jobs" })}>
+                  Browse jobs
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
