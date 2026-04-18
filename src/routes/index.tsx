@@ -12,6 +12,7 @@ function PlaceholderIndex() {
       className="flex min-h-screen items-center justify-center"
       style={{ backgroundColor: "#fcfbf8" }}
     >
+      {/* eslint-disable-next-line @next/next/no-img-element -- TanStack placeholder bundle */}
       <img
         data-lovable-blank-page-placeholder="REMOVE_THIS"
         src="https://cdn.gpteng.co/blank-app-v1.svg"
