@@ -63,15 +63,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     });
 
-    void supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
-      setUser(data.session?.user ?? null);
-      if (data.session?.user) {
-        void loadProfileAndRoles(data.session.user.id).finally(() => setLoading(false));
-      } else {
+    void supabase.auth
+      .getSession()
+      .then(({ data }) => {
+        setSession(data.session);
+        setUser(data.session?.user ?? null);
+        if (data.session?.user) {
+          void loadProfileAndRoles(data.session.user.id).finally(() => setLoading(false));
+        } else {
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        // Never let the UI hang — surface auth as "logged out" if Supabase errors
+        console.error("Supabase getSession failed:", err);
         setLoading(false);
-      }
-    });
+      });
 
     return () => sub.subscription.unsubscribe();
   }, [loadProfileAndRoles]);
