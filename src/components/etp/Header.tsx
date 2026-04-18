@@ -100,6 +100,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="sm"
+                className="hidden sm:inline-flex"
                 onClick={() => navigate({ to: "/auth", search: { mode: "login" } })}
               >
                 Log in
@@ -108,7 +109,8 @@ export function Header() {
                 size="sm"
                 onClick={() => navigate({ to: "/auth", search: { mode: "signup" } })}
               >
-                Get started
+                <span className="sm:hidden">Sign in</span>
+                <span className="hidden sm:inline">Get started</span>
               </Button>
             </>
           )}
