@@ -2,6 +2,7 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider } from "@/lib/auth-context";
 import { Header } from "@/components/etp/Header";
+import { Footer } from "@/components/etp/Footer";
 
 import appCss from "../styles.css?url";
 
@@ -70,6 +71,7 @@ function RootComponent() {
         <main className="flex-1">
           <Outlet />
         </main>
+        <Footer />
       </div>
       <Toaster richColors position="top-right" />
     </AuthProvider>
