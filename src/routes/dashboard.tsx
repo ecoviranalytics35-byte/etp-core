@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { Briefcase, MessageSquare, ShieldCheck, Sparkles, UserRound } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
@@ -66,16 +66,18 @@ function DashboardPage() {
         {isClient ? (
           <>
             <DashCard
+              to="/jobs/new"
               icon={<Briefcase className="h-5 w-5" />}
               title="Post a job"
               description="Describe what you need. Providers worldwide will apply."
-              cta="Coming in Phase 3"
+              cta="Create new job →"
             />
             <DashCard
+              to="/jobs"
               icon={<UserRound className="h-5 w-5" />}
-              title="Active jobs"
-              description="Track progress on your open job posts."
-              cta="0 open"
+              title="Browse all jobs"
+              description="See what's open across the marketplace."
+              cta="Browse jobs →"
             />
             <DashCard
               icon={<MessageSquare className="h-5 w-5" />}
@@ -87,10 +89,11 @@ function DashboardPage() {
         ) : (
           <>
             <DashCard
+              to="/jobs"
               icon={<Briefcase className="h-5 w-5" />}
               title="Browse jobs"
               description="Find opportunities that match your skills."
-              cta="Coming in Phase 3"
+              cta="Browse jobs →"
             />
             <DashCard
               icon={<ShieldCheck className="h-5 w-5" />}
@@ -125,14 +128,18 @@ function DashCard({
   title,
   description,
   cta,
+  to,
 }: {
   icon: React.ReactNode;
   title: string;
   description: string;
   cta: string;
+  to?: "/jobs" | "/jobs/new";
 }) {
-  return (
-    <Card className="transition-all hover:shadow-[var(--shadow-elegant)]">
+  const inner = (
+    <Card
+      className={`h-full transition-all ${to ? "cursor-pointer hover:-translate-y-0.5 hover:shadow-[var(--shadow-elegant)]" : ""}`}
+    >
       <CardHeader>
         <div
           className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-lg"
@@ -144,8 +151,20 @@ function DashCard({
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{cta}</p>
+        <p
+          className={`text-xs font-medium uppercase tracking-wide ${to ? "text-foreground" : "text-muted-foreground"}`}
+        >
+          {cta}
+        </p>
       </CardContent>
     </Card>
   );
+  if (to) {
+    return (
+      <Link to={to} className="block">
+        {inner}
+      </Link>
+    );
+  }
+  return inner;
 }
