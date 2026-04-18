@@ -11,8 +11,8 @@ export function Logo({ className }: { className?: string }) {
           aria-hidden
         />
       </div>
-      <span className="font-display text-base font-semibold tracking-tight">
-        ETP<span className="text-muted-foreground"> · Ecovira</span>
+      <span className="whitespace-nowrap font-display text-base font-semibold tracking-tight">
+        ETP<span className="hidden text-muted-foreground sm:inline"> · Ecovira</span>
       </span>
     </Link>
   );
